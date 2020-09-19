@@ -8,16 +8,16 @@ import ContatoInput from './components/ContatoInput';
 export default function App() {
 
   const[contatos, setContacts] = useState ([]);
-  const[contadorContatos, setCounterContacts] = useState(10);
+  const[contadorContatos, setCountContacts] = useState(10);
 
-  const addContact = (contato, telefone) => {
+  const adicionarContato = (contato, telefone) => {
     setContacts(contatos => {
-        setCounterContacts(contadorContatos + 2);
+        setCountContacts(contadorContatos + 2);
         return [...contatos, {key: contadorContatos.toString(), nome: contato, telefone: telefone}]
     });
   }
 
-  const removeContact = (keyASerRemovida) =>{
+  const removerContato = (keyASerRemovida) =>{
     setContacts(contatos => {
       return contatos.filter((contato) => {
          return contato.key !== keyASerRemovida
@@ -26,8 +26,8 @@ export default function App() {
   }
 
   return (
-    <View style={styles.telaPrincipalView}>
-      <ContatoInput onaddContact={addContact}/>
+    <View style={estilos.screenPrimaryView}>
+      <ContatoInput onAddContact={adicionarContato}/>
         <FlatList 
           data={contatos}
           renderItem={
@@ -35,7 +35,7 @@ export default function App() {
               <ContatoItem
                 chave={contato.item.key} 
                 contato={contato.item.key + ' - ' + contato.item.nome + ' - ' + contato.item.telefone} 
-                onDelete={removeContact}
+                onDelete={removerContato}
               />
             )
           }
@@ -44,26 +44,26 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  entradaView: {
-    marginBottom: 8
+const estilos = StyleSheet.create({
+  submitView: {
+    marginBottom: 8,
   },
-  itemNaListaView: {
-    padding: 15,
+  itemListView: {
+    padding: 12,
     backgroundColor: '#ccc',
     borderColor: 'black',
     borderWidth: 1,
-    marginBottom: 10,
-    borderRadius: 10
+    marginBottom: 8,
+    borderRadius: 8
   },
 
-  telaPrincipalView: {
+  screenPrimaryView: {
     padding: 50
   },
-  contatoTextInput: {
+  contactTextInput: {
     borderBottomColor: 'black', 
     borderBottomWidth: 1, 
-    marginBottom: 5, 
+    marginBottom: 4, 
     padding: 12,
     textAlign: 'center'
   }
