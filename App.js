@@ -8,16 +8,16 @@ import ContatoInput from './components/ContatoInput';
 export default function App() {
 
   const[contatos, setContacts] = useState ([]);
-  const[contadorContatos, setCountContacts] = useState(10);
+  const[contadorContatos, setCounterContacts] = useState(10);
 
-  const adicionarContato = (contato, telefone) => {
+  const addContact = (contato, telefone) => {
     setContacts(contatos => {
-        setCountContacts(contadorContatos + 2);
+        setCounterContacts(contadorContatos + 2);
         return [...contatos, {key: contadorContatos.toString(), nome: contato, telefone: telefone}]
     });
   }
 
-  const removerContato = (keyASerRemovida) =>{
+  const removeContact = (keyASerRemovida) =>{
     setContacts(contatos => {
       return contatos.filter((contato) => {
          return contato.key !== keyASerRemovida
@@ -26,8 +26,8 @@ export default function App() {
   }
 
   return (
-    <View style={estilos.screenPrimaryView}>
-      <ContatoInput onAddContact={adicionarContato}/>
+    <View style={styles.telaPrincipalView}>
+      <ContatoInput onaddContact={addContact}/>
         <FlatList 
           data={contatos}
           renderItem={
@@ -35,7 +35,7 @@ export default function App() {
               <ContatoItem
                 chave={contato.item.key} 
                 contato={contato.item.key + ' - ' + contato.item.nome + ' - ' + contato.item.telefone} 
-                onDelete={removerContato}
+                onDelete={removeContact}
               />
             )
           }
@@ -44,26 +44,26 @@ export default function App() {
   );
 }
 
-const estilos = StyleSheet.create({
-  submitView: {
-    marginBottom: 8,
+const styles = StyleSheet.create({
+  entradaView: {
+    marginBottom: 8
   },
-  itemListView: {
-    padding: 12,
+  itemNaListaView: {
+    padding: 15,
     backgroundColor: '#ccc',
     borderColor: 'black',
     borderWidth: 1,
-    marginBottom: 8,
-    borderRadius: 8
+    marginBottom: 10,
+    borderRadius: 10
   },
 
-  screenPrimaryView: {
+  telaPrincipalView: {
     padding: 50
   },
-  contactTextInput: {
+  contatoTextInput: {
     borderBottomColor: 'black', 
     borderBottomWidth: 1, 
-    marginBottom: 4, 
+    marginBottom: 5, 
     padding: 12,
     textAlign: 'center'
   }

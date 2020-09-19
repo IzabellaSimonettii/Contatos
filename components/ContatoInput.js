@@ -8,48 +8,47 @@ import {
 
 const ContatoInput = (props) => {
 
-  const [nome, setName] = useState ('');
-  const [telefone, setPhone] = useState ('');
+  const [nome, setNome] = useState ('');
+  const [telefone, setTelefone] = useState ('');
 
-  const getName = (nome) => {
-      setName(nome);
+  const capturarNome = (nome) => {
+      setNome(nome);
   }
-  const getPhone = (telefone) => {
-      setPhone(telefone);
+  const capturarTelefone = (telefone) => {
+      setTelefone(telefone);
   }
   return (
-    <View style={estilos.contatoView}>
+    <View style={styles.contatoView}>
       <TextInput 
         placeholder="Nome"
-        style={estilos.contactTextInput}
-        onChangeText={getName}
+        style={styles.contatoTextInput}
+        onChangeText={capturarNome}
         value={nome}        
       />
       <TextInput 
         placeholder="Telefone"
-        style={estilos.contactTextInput}
-        onChangeText={getPhone}
+        style={styles.contatoTextInput}
+        onChangeText={capturarTelefone}
         value={telefone}        
       />
       <Button 
         title="Adicionar"
-        onPress={() => props.onAddContact(nome, telefone)}
+        onPress={() => props.onaddContact(nome, telefone)}
       />
       <br></br>      
       <div>
-        <b><h2>Lista de contatos:</h2></b>
-        <br></br>   
+        <b><h2>Agenda:</h2></b>
       </div>
     </View>
   );
 };
 
 
-const estilos = StyleSheet.create({
+const styles = StyleSheet.create({
   contatoView: {
     marginBottom: 8,
   },
-  contactTextInput: {
+  contatoTextInput: {
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     padding: 8,

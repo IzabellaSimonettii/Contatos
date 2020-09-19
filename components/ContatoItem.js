@@ -9,14 +9,14 @@ import {
 const ContatoItem = (props) => {
   return (
     <TouchableOpacity onPress={() => props.onDelete(props.chave)}>
-      <View style={estilos.itemNaLista}>
+      <View style={styles.itemNaLista}>
         <Text>{props.contato}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
-const estilos = StyleSheet.create({
+const styles = StyleSheet.create({
   itemNaLista: {
     padding: 12,
     backgroundColor: '#CCC',
